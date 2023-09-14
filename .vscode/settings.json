@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "*.wmls": "javascript",
+        "vector": "cpp"
+    }
+}
