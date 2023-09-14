@@ -7,6 +7,8 @@ DRE: 119050063*/
 #include <string>
 #include <vector>
 #include "Disciplina.h"
+#include <map>
+
 
 using namespace std;
 
@@ -16,4 +18,11 @@ class Turma {
     public:
     vector<Disciplina> disciplinas;
     void preencherTurma(void);
+};
+
+class Periodo {
+
+    public:
+    float CalcularMediaDisciplina(Disciplina d, int numeroDoPeriodo);
+    map <string,float> disciplinaMedia;
 };

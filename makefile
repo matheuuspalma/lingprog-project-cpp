@@ -19,7 +19,7 @@ ALL = $(TARGET)
 all: $(TARGET)
 
 $(TARGET): $(TARGET).cpp
-	$(GPP) $(CFLAGS) -o $(TARGET) $(TARGET).cpp $(LDFLAGS) -Iinclude
+	$(GPP) $(CFLAGS) -o $(TARGET) $(TARGET).cpp periodo.cpp $(LDFLAGS) -Iinclude
 
 clean:
 	$(RM) $(TARGET) *.o
