@@ -9,7 +9,7 @@ DRE: 119050063*/
 #define MAX_ALUNOS 10
 #define NUM_PERIODO 3 //Numero de periodos escolhidos
 
-void obterMediaMovel(vector <Periodo> p);
+void obterMediaMoveleDesempenho(vector <Periodo> p, map<string,float> *, map<string,string> *);
 
 
 //Dividi os alunos por disciplinas com suas notas, onde cada elemento do vetor defini sua nota em cada periodo escolhido, no caso o valor maximo de 8 periodos.
@@ -52,6 +52,10 @@ void Turma::preencherTurma(void) {
 int main() {
 
     Turma turma;
+    float mediaMovel;
+    map<string,float> disciplinaEMediaMovel;
+    map<string,string> disciplinaEDesempenho;
+
     turma.preencherTurma();
 
     vector<Periodo> periodo(NUM_PERIODO);   //Numero de periodos escolhidos = 3
@@ -72,29 +76,50 @@ int main() {
 
     }
 
-    obterMediaMovel(periodo);
+    obterMediaMoveleDesempenho(periodo, &disciplinaEMediaMovel, &disciplinaEDesempenho);
 
     return 0;
 }
 
-void obterMediaMovel(vector <Periodo> p) {
+void obterMediaMoveleDesempenho(vector <Periodo> p, map<string,float> *disciplinaEMediaMovel, map<string,string> *disciplinaEDesempenho) {
 
     vector<string> nomeDisciplinas =  {"Matematica", "Portugues", "Fisica", "Biologia", "Programacao"};
-    
+    string nomeDisciplina;
+
     for (int indexDisciplinas = 0; indexDisciplinas < nomeDisciplinas.size(); indexDisciplinas++) {
 
-        float mediaMovelFinalDisciplina = 0.0;
         float mediaMovelDisciplina = 0.0;
+
+        float desempenhoDisciplina = 1.0; /*medir o desempenho em percentual (ponto numero 2 da tarefa)*/
+
+        float mediaAnterior;
+
+        nomeDisciplina = nomeDisciplinas[indexDisciplinas];
 
         for (int indexVector = 0; indexVector < p.size(); indexVector++) {
 
-            mediaMovelDisciplina += p[indexVector].disciplinaMedia[nomeDisciplinas[indexDisciplinas]];
+            mediaMovelDisciplina += p[indexVector].disciplinaMedia[nomeDisciplina];
 
+            if(indexVector != 0)
+                desempenhoDisciplina = (p[indexVector].disciplinaMedia[nomeDisciplina] / mediaAnterior)/desempenhoDisciplina;
+
+            mediaAnterior = p[indexVector].disciplinaMedia[nomeDisciplina];
         }
 
-        mediaMovelFinalDisciplina = mediaMovelDisciplina / p.size();
+        (*disciplinaEMediaMovel)[nomeDisciplina] = mediaMovelDisciplina / p.size();
 
-        cout << "A media movel da disciplina " << nomeDisciplinas[indexDisciplinas] << "foi: " << mediaMovelFinalDisciplina << endl;
+        if (desempenhoDisciplina >= 1.05) {
+            (*disciplinaEDesempenho)[nomeDisciplina] = "melhora no desempenho";
+        } else if (desempenhoDisciplina < 0.95) {
+            (*disciplinaEDesempenho)[nomeDisciplina] = "piora no desempenho";
+        } else {
+            (*disciplinaEDesempenho)[nomeDisciplina] = "estabilidade";
+        }
+
+
+        cout << "A media movel da disciplina " << nomeDisciplina << " foi: " << mediaMovelDisciplina/p.size() << "\n\n" << endl;
+
+        cout << "A disciplina " << nomeDisciplina << " teve: " << (*disciplinaEDesempenho)[nomeDisciplina] << " \n\n" << endl;
 
         /* IR EM CADA PERIODO BUSCAR A MEDIA DESSA DISCIPLINA E SALVAR NUMA VARIAVEL PRA FAZER A MEDIA MOVEL NO FINAL*/
     }

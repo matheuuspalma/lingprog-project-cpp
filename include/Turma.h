@@ -18,6 +18,7 @@ class Turma {
     public:
     vector<Disciplina> disciplinas;
     void preencherTurma(void);
+    void desempenhoTurma(void);
 };
 
 class Periodo {
@@ -26,3 +27,4 @@ class Periodo {
     float CalcularMediaDisciplina(Disciplina d, int numeroDoPeriodo);
     map <string,float> disciplinaMedia;
 };
+
