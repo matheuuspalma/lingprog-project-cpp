@@ -9,10 +9,10 @@ DRE: 119050063*/
 
 using namespace std;
 
-class Aluno {
+class Aluno{
+
 public:
     string nomeAluno;
     vector<float> notas;
-
-    Aluno(string nome, vector<float> notasAluno) : nomeAluno(nome), notas(notasAluno) {}
+    Aluno(string nome, vector<float> notasAluno) : nomeAluno(nome), notas(notasAluno) {};
 };
