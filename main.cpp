@@ -49,11 +49,14 @@ int main() {
     int escolhaPeriodo;
 
     turma.setQuantidadeDePeriodos(NUM_PERIODO);
+    turma.obterMediaGeralDisciplina();
     while (escolhaMenu =! 0) {
         cout << "1 - Media das Notas Finais de todas as Disciplinas de Todos os Periodos." << endl << "2 - Media Movel dos Ultimos 3 Periodos." << endl << "3 - Desempenho das Disciplinas." << endl;
         cout << "4 - Desempenho dos Alunos." << endl << "5 - Disciplina com Maior media.\n" << "6 - Disciplina com Maior Evolucao no Ultimo Periodo." << endl << "7 - Melhor Aluno." << endl;
-        cout << "0 - Sair do Programa.\n\n" << endl;
+        cout << "0 - Sair do Programa.\nEntre com uma Opção : ";
         cin >> escolhaMenu;
+        cout << "\n";
+
 
         if(escolhaMenu == 0){
             cout << "Saindo do Programa !!!\n\n" << endl;
@@ -62,7 +65,6 @@ int main() {
         }
         else if (escolhaMenu == 1) {
 
-            turma.obterMediaGeralDisciplina();
             printMapStringFloat(turma.getMediasGerais());
 
         }
@@ -75,8 +77,9 @@ int main() {
         else if (escolhaMenu == 3){
 
             while (1){
-                cout << "Entre com o Periodo:\n\n0 - Para Voltar ao Menu Principal." << endl;
+                cout << "Entre com o Periodo entre 1 e 8 ou 0 para Voltar ao Menu Principal: ";
                 cin >> escolhaPeriodo;
+                cout << "\n";
 
                 if(escolhaPeriodo == 0){
                     cout << "Retornando ao Menu Principal." << endl;
@@ -87,7 +90,7 @@ int main() {
                     cout << "Error: Nao e possivel calcular desempenho da disciplina no primeiro periodo" << endl;
                 }
 
-                else if (escolhaPeriodo == 2 || 3 || 4 || 5 || 6 || 7 || 8 ){
+                else if (escolhaPeriodo >= 2 && escolhaPeriodo <= 8 ){
                     turma.obterDesempenhoDisciplina(escolhaPeriodo);
                     printDesempenhoDisciplina(turma.getDesempenhoDisciplinas());
                 }
@@ -106,8 +109,9 @@ int main() {
         else if (escolhaMenu == 4){
             
             while (1){
-                cout << "Entre com o Periodo:" << endl << "0 - Para Voltar ao Menu Principal." << endl;
+                cout << "Entre com o Periodo entre 1 e 8 ou 0 para Voltar ao Menu Principal: ";
                 cin >> escolhaPeriodo;
+                cout << "\n";
 
                 if(escolhaPeriodo == 0){
                     cout << "Retornando ao Menu Principal." << endl;
@@ -118,7 +122,7 @@ int main() {
                     cout << "Error: Nao e possivel calcular desempenho do aluno no primeiro periodo" << endl;
                 }
 
-                else if (escolhaPeriodo == 2 || 3 || 4 || 5 || 6 || 7 || 8 ){
+                else if (escolhaPeriodo >= 2 && escolhaPeriodo <= 8 ){
                     turma.obterDesempenhoAlunos(escolhaPeriodo);
                     printDesempenhoAluno(turma.getDesempenhoAlunos());
                 }
@@ -133,8 +137,7 @@ int main() {
         }
 
         else if (escolhaMenu == 5){
-            turma.obterMediaGeralDisciplina();
-            cout << "Maior media foi " << turma.maiorMediaDisciplina << "da disciplina " << turma.nomeDisciplinaMaiorMedia << "do periodo " << turma.periodoMaiorMediaDisciplina << endl;
+            cout << "Maior media foi " << turma.maiorMediaDisciplina << " da disciplina " << turma.nomeDisciplinaMaiorMedia << " do periodo " << turma.periodoMaiorMediaDisciplina << endl;
 
         }
         

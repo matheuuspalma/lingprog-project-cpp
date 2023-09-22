@@ -12,14 +12,14 @@ GPP = g++
 #CFLAGS = -Wall -Werror -std=c11 -D_POSIX_THREAD_SEMANTICS
 #endif
 
-TARGET = main
+TARGET = avaliacao01
 
 ALL = $(TARGET)
 
 all: $(TARGET)
 
-$(TARGET): $(TARGET).cpp
-	$(GPP) $(CFLAGS) -o $(TARGET) $(TARGET).cpp turma.cpp $(LDFLAGS) -Iinclude
+$(TARGET): main.cpp
+	$(GPP) $(CFLAGS) -o $(TARGET) main.cpp turma.cpp $(LDFLAGS) -Iinclude
 
 clean:
 	$(RM) $(TARGET) *.o
