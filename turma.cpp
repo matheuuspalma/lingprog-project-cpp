@@ -4,7 +4,7 @@
 
 //Construindo a Turma e fazendo a divisao os alunos por disciplinas com suas notas, onde cada elemento do vetor defini sua nota em cada periodo escolhido, no caso o valor maximo de 8 periodos.
 Turma::Turma(void) {
-    Aluno armandoMat("Armano", { 0, 5, 6, 9, 5, 7, 1, 10 });
+    Aluno armandoMat("Armano", { 0, 5, 6, 9, 5, 7, 1, 5 });
     Aluno joaoMat("Joao", { 2, 3, 7, 5, 6, 1, 6, 7 });
     Aluno claraMat("Clara", { 7, 5, 9, 10, 5, 9, 7, 7 });
     Aluno mariaMat("Maria", { 8, 6, 6, 3, 7, 7, 8, 9 });
@@ -47,8 +47,6 @@ void Turma::obterMediaGeralDisciplina(void){
 
     for (int periodoNum = 0; periodoNum < quantidadeDePeriodos; periodoNum++) {
 
-        cout << "\n\nPeriodo: " << periodoNum + 1<< endl;
-
         for ( int indexDisciplinas = 0; indexDisciplinas < disciplinas.size();  indexDisciplinas++) {
 
             string nomeDisciplina = disciplinas[indexDisciplinas].nomeDisciplina;
@@ -59,6 +57,7 @@ void Turma::obterMediaGeralDisciplina(void){
             {
                 maiorMediaDisciplina = mediaDisciplina;
                 periodoMaiorMediaDisciplina = periodoNum + 1;
+                nomeDisciplinaMaiorMedia = nomeDisciplina;
             }
             disciplinaMediaGeral[nomeDisciplina] = mediaDisciplina; //map pra salvar nome de uma disciplina e media
         }
